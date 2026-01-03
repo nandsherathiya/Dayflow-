@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/integrations/supabase/client';
 import { Loader2, Search, Users } from 'lucide-react';
@@ -30,6 +31,8 @@ export default function EmployeesPage() {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [departmentFilter, setDepartmentFilter] = useState<string>('all');
+  const [departments, setDepartments] = useState<string[]>([]);
 
   useEffect(() => {
     if (isHrOrAdmin) {
@@ -45,6 +48,9 @@ export default function EmployeesPage() {
 
     if (data) {
       setEmployees(data as Employee[]);
+      // Extract unique departments
+      const uniqueDepts = Array.from(new Set(data.map(e => e.department).filter(d => d))) as string[];
+      setDepartments(uniqueDepts.sort());
     }
     setIsLoading(false);
   };
@@ -65,13 +71,17 @@ export default function EmployeesPage() {
 
   const filteredEmployees = employees.filter(emp => {
     const searchLower = searchQuery.toLowerCase();
-    return (
+    const matchesSearch = (
       emp.first_name.toLowerCase().includes(searchLower) ||
       emp.last_name.toLowerCase().includes(searchLower) ||
       emp.email.toLowerCase().includes(searchLower) ||
       emp.employee_id.toLowerCase().includes(searchLower) ||
       (emp.department?.toLowerCase().includes(searchLower) ?? false)
     );
+    
+    const matchesDepartment = departmentFilter === 'all' || emp.department === departmentFilter;
+    
+    return matchesSearch && matchesDepartment;
   });
 
   return (
@@ -92,20 +102,61 @@ export default function EmployeesPage() {
               </div>
             </CardContent>
           </Card>
+          <Card className="shadow-card border bg-info/5 border-info/20">
+            <CardContent className="p-5">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-info/10">
+                  <Users className="h-6 w-6 text-info" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Departments</p>
+                  <p className="text-2xl font-bold">{departments.length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="shadow-card border bg-success/5 border-success/20">
+            <CardContent className="p-5">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-success/10">
+                  <Users className="h-6 w-6 text-success" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Filtered Results</p>
+                  <p className="text-2xl font-bold">{filteredEmployees.length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Employee Table */}
         <Card className="shadow-card border">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+          <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between space-y-4 md:space-y-0 pb-4">
             <CardTitle className="text-lg">Employee Directory</CardTitle>
-            <div className="relative w-64">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                placeholder="Search employees..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9"
-              />
+            <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+              <div className="relative flex-1 md:flex-none md:w-64">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  placeholder="Search employees..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-9"
+                />
+              </div>
+              <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
+                <SelectTrigger className="w-full md:w-48">
+                  <SelectValue placeholder="Filter by department" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Departments</SelectItem>
+                  {departments.map((dept) => (
+                    <SelectItem key={dept} value={dept}>
+                      {dept}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </CardHeader>
           <CardContent>

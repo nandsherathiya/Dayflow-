@@ -64,12 +64,10 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" className="border-r-0">
       <SidebarHeader className="border-b border-sidebar-border px-4 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground font-bold text-sm">
-            D
-          </div>
+          <img src="/public/logo.png" alt="Innov8" className="h-9 w-9 rounded-lg" />
           {!collapsed && (
             <div className="flex flex-col">
-              <span className="font-semibold text-sidebar-foreground">Dayflow</span>
+              <span className="font-semibold text-sidebar-foreground">Innov8</span>
               <span className="text-xs text-sidebar-foreground/60">HRMS</span>
             </div>
           )}

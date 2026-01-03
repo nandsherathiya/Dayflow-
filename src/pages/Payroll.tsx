@@ -88,49 +88,93 @@ export default function PayrollPage() {
     >
       <div className="space-y-6 animate-fade-in">
         {/* Stats */}
-        {!isHrOrAdmin && payroll.length > 0 && (
-          <div className="grid gap-4 md:grid-cols-3">
-            <Card className="shadow-card border bg-primary/5 border-primary/20">
-              <CardContent className="p-5">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                    <DollarSign className="h-6 w-6 text-primary" />
+        <div className="grid gap-4 md:grid-cols-3">
+          {isHrOrAdmin ? (
+            <>
+              <Card className="shadow-card border bg-primary/5 border-primary/20">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                      <DollarSign className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Total Payroll Records</p>
+                      <p className="text-2xl font-bold">{payroll.length}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Latest Net Salary</p>
-                    <p className="text-2xl font-bold">{formatCurrency(Number(payroll[0]?.net_salary || 0))}</p>
+                </CardContent>
+              </Card>
+              <Card className="shadow-card border bg-info/5 border-info/20">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-info/10">
+                      <DollarSign className="h-6 w-6 text-info" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Total Expenditure (YTD)</p>
+                      <p className="text-2xl font-bold">{formatCurrency(totalEarnings)}</p>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="shadow-card border bg-success/5 border-success/20">
-              <CardContent className="p-5">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-success/10">
-                    <TrendingUp className="h-6 w-6 text-success" />
+                </CardContent>
+              </Card>
+              <Card className="shadow-card border bg-success/5 border-success/20">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-success/10">
+                      <TrendingUp className="h-6 w-6 text-success" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Average Salary</p>
+                      <p className="text-2xl font-bold">{formatCurrency(averageSalary)}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">YTD Earnings</p>
-                    <p className="text-2xl font-bold">{formatCurrency(totalEarnings)}</p>
+                </CardContent>
+              </Card>
+            </>
+          ) : payroll.length > 0 ? (
+            <>
+              <Card className="shadow-card border bg-primary/5 border-primary/20">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                      <DollarSign className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Latest Net Salary</p>
+                      <p className="text-2xl font-bold">{formatCurrency(Number(payroll[0]?.net_salary || 0))}</p>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="shadow-card border bg-info/5 border-info/20">
-              <CardContent className="p-5">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-info/10">
-                    <Calendar className="h-6 w-6 text-info" />
+                </CardContent>
+              </Card>
+              <Card className="shadow-card border bg-success/5 border-success/20">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-success/10">
+                      <TrendingUp className="h-6 w-6 text-success" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">YTD Earnings</p>
+                      <p className="text-2xl font-bold">{formatCurrency(totalEarnings)}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Average Monthly</p>
-                    <p className="text-2xl font-bold">{formatCurrency(averageSalary)}</p>
+                </CardContent>
+              </Card>
+              <Card className="shadow-card border bg-info/5 border-info/20">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-info/10">
+                      <Calendar className="h-6 w-6 text-info" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Average Monthly</p>
+                      <p className="text-2xl font-bold">{formatCurrency(averageSalary)}</p>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
+                </CardContent>
+              </Card>
+            </>
+          ) : null}
+        </div>
 
         {/* Payroll Table */}
         <Card className="shadow-card border">

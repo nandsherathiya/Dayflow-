@@ -1,4 +1,4 @@
-# Dayflow HR Suite
+# Innov8 HR Suite
 
 ## Project info
 

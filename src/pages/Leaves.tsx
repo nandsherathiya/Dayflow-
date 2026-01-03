@@ -12,7 +12,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Plus, CalendarDays, Check, X } from 'lucide-react';
+import { Loader2, Plus, CalendarDays, Check, X, Clock } from 'lucide-react';
 import { format } from 'date-fns';
 
 interface LeaveRequest {
@@ -176,14 +176,70 @@ export default function LeavesPage() {
       description={isHrOrAdmin ? "Review and manage all leave requests" : "Apply for and track your leave requests"}
     >
       <div className="space-y-6 animate-fade-in">
+        {/* Stats */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <Card className="shadow-card border bg-info/5 border-info/20">
+            <CardContent className="p-5">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-info/10">
+                  <CalendarDays className="h-6 w-6 text-info" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Total Requests</p>
+                  <p className="text-2xl font-bold">{leaves.length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="shadow-card border bg-warning/5 border-warning/20">
+            <CardContent className="p-5">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-warning/10">
+                  <Clock className="h-6 w-6 text-warning" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Pending</p>
+                  <p className="text-2xl font-bold">{leaves.filter(l => l.status === 'pending').length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="shadow-card border bg-success/5 border-success/20">
+            <CardContent className="p-5">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-success/10">
+                  <Check className="h-6 w-6 text-success" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Approved</p>
+                  <p className="text-2xl font-bold">{leaves.filter(l => l.status === 'approved').length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="shadow-card border bg-destructive/5 border-destructive/20">
+            <CardContent className="p-5">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-destructive/10">
+                  <X className="h-6 w-6 text-destructive" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Rejected</p>
+                  <p className="text-2xl font-bold">{leaves.filter(l => l.status === 'rejected').length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Header Actions */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            {isHrOrAdmin && pendingCount > 0 && (
+            {isHrOrAdmin && leaves.filter(l => l.status === 'pending').length > 0 && (
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-warning/10 border border-warning/20">
                 <CalendarDays className="h-4 w-4 text-warning" />
                 <span className="text-sm font-medium text-warning">
-                  {pendingCount} pending request{pendingCount > 1 ? 's' : ''}
+                  {leaves.filter(l => l.status === 'pending').length} pending request(s)
                 </span>
               </div>
             )}

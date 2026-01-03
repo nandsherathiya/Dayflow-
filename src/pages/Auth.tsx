@@ -131,7 +131,7 @@ export default function Auth() {
 
     toast({
       title: 'Account created!',
-      description: 'Welcome to Dayflow. Redirecting to dashboard...',
+      description: 'Welcome to Innov8. Redirecting to dashboard...',
     });
     
     navigate('/dashboard');
@@ -144,10 +144,8 @@ export default function Auth() {
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary via-primary/90 to-primary/80 p-12 flex-col justify-between">
         <div>
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-foreground/20 text-primary-foreground font-bold text-xl backdrop-blur-sm">
-              D
-            </div>
-            <span className="text-2xl font-bold text-primary-foreground">Dayflow</span>
+            <img src="/public/logo.png" alt="Innov8" className="h-12 w-12 rounded-xl" />
+            <span className="text-2xl font-bold text-primary-foreground">Innov8</span>
           </div>
           <p className="text-primary-foreground/80 mt-2">Every workday, perfectly aligned.</p>
         </div>
@@ -178,21 +176,17 @@ export default function Auth() {
           </div>
 
           <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-foreground/10 backdrop-blur-sm">
-              <Shield className="h-6 w-6 text-primary-foreground" />
-            </div>
+            
             <div>
-              <h3 className="font-semibold text-primary-foreground">Role-Based Access</h3>
+              <h3 className="font-semibold text-primary-foreground" >Dayflow: Human Resources Management System</h3>
               <p className="text-primary-foreground/70 text-sm mt-1">
-                Secure access controls for HR admins and employees alike.
+                ODOOxGCET
               </p>
             </div>
           </div>
         </div>
 
-        <p className="text-primary-foreground/60 text-sm">
-          © 2025 Dayflow HRMS. All rights reserved.
-        </p>
+      
       </div>
 
       {/* Right side - Auth Forms */}
@@ -204,7 +198,7 @@ export default function Auth() {
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
                 D
               </div>
-              <span className="text-xl font-bold">Dayflow</span>
+              <span className="text-xl font-bold">Innov8</span>
             </div>
             <p className="text-muted-foreground text-sm">Every workday, perfectly aligned.</p>
           </div>
@@ -268,20 +262,20 @@ export default function Auth() {
                   <form onSubmit={handleSignUp} className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="first-name">First Name</Label>
+                        <Label htmlFor="first-name">Full Name</Label>
                         <Input
                           id="first-name"
-                          placeholder="John"
+                          placeholder="John Doe"
                           value={firstName}
                           onChange={(e) => setFirstName(e.target.value)}
                           required
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="last-name">Last Name</Label>
+                        <Label htmlFor="last-name">Company Name</Label>
                         <Input
                           id="last-name"
-                          placeholder="Doe"
+                          placeholder="Acme Corp"
                           value={lastName}
                           onChange={(e) => setLastName(e.target.value)}
                           required
@@ -292,7 +286,7 @@ export default function Auth() {
                       <Label htmlFor="employee-id">Employee ID</Label>
                       <Input
                         id="employee-id"
-                        placeholder="EMP-001"
+                        placeholder="E.g. OIJODO2026001"
                         value={employeeId}
                         onChange={(e) => setEmployeeId(e.target.value)}
                         required

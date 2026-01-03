@@ -146,39 +146,74 @@ export default function Dashboard() {
   return (
     <DashboardLayout 
       title={`${greeting()}!`} 
-      description={`Welcome back. Here's what's happening today.`}
+      description={`Welcome back, ${user?.email}. Here's what's happening today.`}
     >
       <div className="space-y-8 animate-fade-in">
         {/* Quick Stats */}
         {isHrOrAdmin ? (
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <StatCard
-              title="Total Employees"
-              value={stats.totalEmployees}
-              icon={<Users className="h-6 w-6" />}
-              variant="primary"
-            />
-            <StatCard
-              title="Present Today"
-              value={stats.presentToday}
-              icon={<CalendarCheck className="h-6 w-6" />}
-              variant="success"
-            />
-            <StatCard
-              title="Pending Leaves"
-              value={stats.pendingLeaves}
-              icon={<CalendarDays className="h-6 w-6" />}
-              variant="warning"
-            />
-            <StatCard
-              title="Monthly Payroll"
-              value="$0"
-              description="Configure payroll"
-              icon={<DollarSign className="h-6 w-6" />}
-              variant="info"
-            />
+          <>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <StatCard
+                title="Total Employees"
+                value={stats.totalEmployees}
+                icon={<Users className="h-6 w-6" />}
+                variant="primary"
+              />
+              <StatCard
+                title="Present Today"
+                value={stats.presentToday}
+                icon={<CalendarCheck className="h-6 w-6" />}
+                variant="success"
+              />
+              <StatCard
+                title="Pending Leaves"
+                value={stats.pendingLeaves}
+                icon={<CalendarDays className="h-6 w-6" />}
+                variant="warning"
+              />
+              <StatCard
+                title="Monthly Payroll"
+                value="$0"
+                description="Configure payroll"
+                icon={<DollarSign className="h-6 w-6" />}
+                variant="info"
+              />
           </div>
-        ) : (
+            {/* Admin Dashboard Section */}
+            <Card className="shadow-card border">
+              <CardHeader>
+                <CardTitle className="text-base font-medium flex items-center gap-2">
+                  <BarChart3 className="h-5 w-5 text-primary" />
+                  Dashboard Overview
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground">Attendance Rate</span>
+                      <span className="text-sm font-medium">{stats.totalEmployees > 0 ? Math.round((stats.presentToday / stats.totalEmployees) * 100) : 0}%</span>
+                    </div>
+                    <div className="w-full bg-muted rounded-full h-2">
+                      <div 
+                        className="bg-green-500 h-2 rounded-full" 
+                        style={{width: `${stats.totalEmployees > 0 ? (stats.presentToday / stats.totalEmployees) * 100 : 0}%`}}
+                      ></div>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground">Pending Approvals</span>
+                      <span className="text-sm font-medium">{stats.pendingLeaves}</span>
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {stats.pendingLeaves > 0 ? `${stats.pendingLeaves} leave request(s) need approval` : 'All requests processed'}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </>        ) : (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {/* Attendance Card */}
             <Card className="shadow-card border col-span-1 md:col-span-2 lg:col-span-1">
