@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dayflow HRMS Design System
+   A professional, calming HR SaaS palette with teal accents
+   All colors are HSL for proper theming
+*/
+
+@layer base {
+  :root {
+    /* Core brand colors - Professional Teal */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Primary - Teal for professional HR feel */
+    --primary: 174 62% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Soft slate */
+    --secondary: 215 20% 94%;
+    --secondary-foreground: 215 25% 25%;
+
+    /* Muted - Subtle grays */
+    --muted: 215 15% 92%;
+    --muted-foreground: 215 15% 45%;
+
+    /* Accent - Light teal tint */
+    --accent: 174 45% 92%;
+    --accent-foreground: 174 62% 28%;
+
+    /* Destructive - Warm red for alerts */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Success - Green for approvals */
+    --success: 142 71% 40%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning - Amber for pending states */
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 92% 15%;
+
+    /* Info - Blue for informational */
+    --info: 210 92% 45%;
+    --info-foreground: 0 0% 100%;
+
+    /* Border and input styling */
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 174 62% 38%;
+
+    --radius: 0.625rem;
+
+    /* Sidebar - Darker professional sidebar */
+    --sidebar-background: 215 28% 17%;
+    --sidebar-foreground: 215 15% 85%;
+    --sidebar-primary: 174 62% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 22%;
+    --sidebar-accent-foreground: 215 15% 90%;
+    --sidebar-border: 215 25% 25%;
+    --sidebar-ring: 174 62% 45%;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(174, 62%, 38%) 0%, hsl(174, 55%, 28%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(142, 71%, 45%) 0%, hsl(142, 71%, 35%) 100%);
+    --gradient-warning: linear-gradient(135deg, hsl(38, 92%, 55%) 0%, hsl(38, 92%, 45%) 100%);
+    --gradient-info: linear-gradient(135deg, hsl(210, 92%, 50%) 0%, hsl(210, 92%, 40%) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.08), 0 2px 4px -2px hsl(215 25% 15% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.1), 0 4px 6px -4px hsl(215 25% 15% / 0.08);
+    --shadow-card: 0 2px 8px -2px hsl(215 25% 15% / 0.08), 0 0 0 1px hsl(215 20% 88% / 0.5);
+  }
+
+  .dark {
+    --background: 215 28% 10%;
+    --foreground: 215 15% 92%;
+
+    --card: 215 28% 14%;
+    --card-foreground: 215 15% 92%;
+
+    --popover: 215 28% 14%;
+    --popover-foreground: 215 15% 92%;
+
+    --primary: 174 55% 45%;
+    --primary-foreground: 215 28% 10%;
+
+    --secondary: 215 25% 20%;
+    --secondary-foreground: 215 15% 85%;
+
+    --muted: 215 25% 18%;
+    --muted-foreground: 215 15% 60%;
+
+    --accent: 215 25% 22%;
+    --accent-foreground: 174 55% 55%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 60% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 80% 50%;
+    --warning-foreground: 38 80% 10%;
+
+    --info: 210 80% 55%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 215 25% 22%;
+    --input: 215 25% 22%;
+    --ring: 174 55% 45%;
+
+    --sidebar-background: 215 30% 8%;
+    --sidebar-foreground: 215 15% 80%;
+    --sidebar-primary: 174 55% 50%;
+    --sidebar-primary-foreground: 215 30% 8%;
+    --sidebar-accent: 215 28% 15%;
+    --sidebar-accent-foreground: 215 15% 85%;
+    --sidebar-border: 215 28% 18%;
+    --sidebar-ring: 174 55% 50%;
+    
+    --shadow-card: 0 2px 8px -2px hsl(215 30% 5% / 0.3), 0 0 0 1px hsl(215 25% 22% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30;
+  }
+}
+
+@layer utilities {
+  /* Status badge utilities */
+  .status-pending {
+    @apply bg-warning/15 text-warning border border-warning/25;
+  }
+
+  .status-approved {
+    @apply bg-success/15 text-success border border-success/25;
+  }
+
+  .status-rejected {
+    @apply bg-destructive/15 text-destructive border border-destructive/25;
+  }
+
+  .status-present {
+    @apply bg-success/15 text-success border border-success/25;
+  }
+
+  .status-absent {
+    @apply bg-destructive/15 text-destructive border border-destructive/25;
+  }
+
+  .status-half-day {
+    @apply bg-warning/15 text-warning border border-warning/25;
+  }
+
+  .status-leave {
+    @apply bg-info/15 text-info border border-info/25;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+}
+
+/* Animation keyframes */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.3s ease-out;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
