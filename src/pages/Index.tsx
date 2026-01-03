@@ -73,10 +73,8 @@ export default function Index() {
       <header className="fixed top-0 left-0 right-0 z-50 border-b bg-card/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
-              D
-            </div>
-            <span className="font-bold text-xl">Dayflow</span>
+            <img src="/logo.png" alt="Innov8 Tech" className="h-9 w-9 rounded-lg object-cover" />
+            <span className="font-bold text-xl">Innov8 Tech</span>
           </div>
           <Link to="/auth">
             <Button>
@@ -99,7 +97,7 @@ export default function Index() {
             <span className="text-primary">perfectly aligned</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Streamline your HR operations with Dayflow. Manage employees, track attendance, 
+            Streamline your HR operations with Innov8 Tech. Manage employees, track attendance, 
             handle leave requests, and oversee payroll — all in one powerful platform.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -151,7 +149,7 @@ export default function Index() {
                 Built for modern workplaces
               </h2>
               <p className="text-muted-foreground mb-8">
-                Dayflow is designed to simplify HR management while providing employees 
+                Innov8 Tech is designed to simplify HR management while providing employees 
                 with the tools they need for self-service.
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
@@ -175,7 +173,7 @@ export default function Index() {
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground font-bold text-2xl mx-auto mb-4">
                     D
                   </div>
-                  <p className="text-lg font-semibold">Dayflow Dashboard</p>
+                  <p className="text-lg font-semibold">Innov8 Tech Dashboard</p>
                   <p className="text-sm text-muted-foreground">Your HR command center</p>
                 </div>
               </div>
@@ -189,7 +187,7 @@ export default function Index() {
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to transform your HR?</h2>
           <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
-            Join companies that trust Dayflow for their HR management needs.
+            Join companies that trust Innov8 Tech for their HR management needs.
           </p>
           <Link to="/auth">
             <Button size="lg" variant="secondary" className="px-8">
@@ -204,13 +202,11 @@ export default function Index() {
       <footer className="py-8 px-4 border-t">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">
-              D
-            </div>
-            <span className="font-semibold">Dayflow</span>
+            <img src="/logo.png" alt="Innov8 Tech" className="h-8 w-8 rounded-lg object-cover" />
+            <span className="font-semibold">Innov8 Tech</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            © 2025 Dayflow HRMS. All rights reserved.
+            © 2025 Innov8 Tech HRMS. All rights reserved.
           </p>
         </div>
       </footer>

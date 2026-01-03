@@ -131,7 +131,7 @@ export default function Auth() {
 
     toast({
       title: 'Account created!',
-      description: 'Welcome to Dayflow. Redirecting to dashboard...',
+      description: 'Welcome to Innov8 Tech. Redirecting to dashboard...',
     });
     
     navigate('/dashboard');
@@ -144,10 +144,8 @@ export default function Auth() {
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary via-primary/90 to-primary/80 p-12 flex-col justify-between">
         <div>
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-foreground/20 text-primary-foreground font-bold text-xl backdrop-blur-sm">
-              D
-            </div>
-            <span className="text-2xl font-bold text-primary-foreground">Dayflow</span>
+            <img src="/logo.png" alt="Innov8 Tech" className="h-12 w-12 rounded-xl object-cover" />
+            <span className="text-2xl font-bold text-primary-foreground">Innov8 Tech</span>
           </div>
           <p className="text-primary-foreground/80 mt-2">Every workday, perfectly aligned.</p>
         </div>
@@ -191,7 +189,7 @@ export default function Auth() {
         </div>
 
         <p className="text-primary-foreground/60 text-sm">
-          © 2025 Dayflow HRMS. All rights reserved.
+          © 2025 Innov8 Tech HRMS. All rights reserved.
         </p>
       </div>
 
@@ -201,10 +199,8 @@ export default function Auth() {
           {/* Mobile logo */}
           <div className="lg:hidden mb-8 text-center">
             <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
-                D
-              </div>
-              <span className="text-xl font-bold">Dayflow</span>
+              <img src="/logo.png" alt="Innov8 Tech" className="h-10 w-10 rounded-lg object-cover" />
+                <span className="text-xl font-bold">Innov8 Tech</span>
             </div>
             <p className="text-muted-foreground text-sm">Every workday, perfectly aligned.</p>
           </div>

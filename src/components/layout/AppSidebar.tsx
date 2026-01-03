@@ -63,13 +63,11 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r-0">
       <SidebarHeader className="border-b border-sidebar-border px-4 py-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground font-bold text-sm">
-            D
-          </div>
+          <div className="flex items-center gap-3">
+          <img src="/logo.png" alt="Innov8 Tech" className="h-9 w-9 rounded-lg object-cover" />
           {!collapsed && (
             <div className="flex flex-col">
-              <span className="font-semibold text-sidebar-foreground">Dayflow</span>
+              <span className="font-semibold text-sidebar-foreground">Innov8 Tech</span>
               <span className="text-xs text-sidebar-foreground/60">HRMS</span>
             </div>
           )}
@@ -111,7 +109,7 @@ export function AppSidebar() {
               className="w-full justify-start gap-3 px-2 py-2 h-auto hover:bg-sidebar-accent"
             >
               <Avatar className="h-8 w-8">
-                <AvatarImage src="" />
+                <AvatarImage src="/logo.png" />
                 <AvatarFallback className="bg-sidebar-primary text-sidebar-primary-foreground text-xs">
                   {initials}
                 </AvatarFallback>
